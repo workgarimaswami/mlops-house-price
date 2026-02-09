@@ -1,0 +1,44 @@
+{
+  "name": "housepriceai-frontend",
+  "version": "1.0.0",
+  "description": "Professional MLOps House Price Prediction Frontend - Created by Garima Swami",
+  "main": "app.py",
+  "scripts": {
+    "start": "python app.py",
+    "dev": "python app.py --debug",
+    "static": "live-server --port=3000 --open=index.html",
+    "build": "echo 'Frontend is ready to use!'",
+    "test": "echo 'No tests configured - use browser testing'",
+    "api-test": "python -c \"import requests; r = requests.post('http://localhost:5000/predict', json={'totalRooms':5,'bedrooms':3}); print(f'Test response: {r.json()}')\"",
+    "clean": "rm -rf __pycache__ *.pyc"
+  },
+  "keywords": [
+    "mlops",
+    "machine-learning",
+    "house-price",
+    "prediction",
+    "real-estate",
+    "ai",
+    "data-science",
+    "portfolio",
+    "garima-swami"
+  ],
+  "author": {
+    "name": "Garima Swami",
+    "email": "garima@example.com",
+    "url": "https://github.com/garima-swami"
+  },
+  "license": "MIT",
+  "dependencies": {},
+  "devDependencies": {
+    "live-server": "^1.2.2"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/garima-swami/mlops-house-price.git"
+  },
+  "homepage": "https://github.com/garima-swami/mlops-house-price",
+  "bugs": {
+    "url": "https://github.com/garima-swami/mlops-house-price/issues"
+  }
+}
