@@ -1,9 +1,9 @@
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, send_from_directory
 import pickle
 import numpy as np
 import os
 
-app = Flask(__name__)
+app = Flask(__name__, static_folder='frontend', static_url_path='')
 
 # Load model
 try:
@@ -13,16 +13,25 @@ try:
 except:
     model_loaded = False
 
+# Serve frontend files
 @app.route('/')
-def home():
-    return "House Price Prediction API"
+def serve_frontend():
+    return send_from_directory('frontend', 'index.html')
 
-@app.route('/health')
+@app.route('/<path:path>')
+def serve_static(path):
+    return send_from_directory('frontend', path)
+
+# API endpoints
+@app.route('/api/health')
 def health():
-    return jsonify({'status': 'healthy'})
+    return jsonify({'status': 'healthy', 'model_loaded': model_loaded})
 
-@app.route('/predict', methods=['POST'])
+@app.route('/api/predict', methods=['POST'])
 def predict():
+    if not model_loaded:
+        return jsonify({'error': 'Model not loaded'}), 500
+    
     try:
         data = request.get_json()
         features = data['features']
